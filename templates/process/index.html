@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block head %}
+    <style>
+        form {
+            {#padding: 10px;#}
+            margin: 10px 5px;
+        }
+    input[type=submit]{
+        margin-bottom: 10px;
+    }
+    </style>
+{% endblock head %}
+
+{% block content %}
+    <h4>Configuration</h4>
+    <div class="accordion" id="accordionParent">
+
+        <!-- FIRST CONFIGURATION -->
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFirst"
+                            aria-expanded="true" aria-controls="collapseFirst">
+                        First Config
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseFirst" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionParent">
+                <div class="card-body">
+
+                    <form method="post" action="">{% csrf_token %}
+                        {{ wizard.management_form }}
+                        <h3>First</h3>
+                        {% for field in form.visible_fields %}
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">{{ field.label_tag }}</label>
+                                <div class="col-sm-10">
+                                    {% render_field field|add_class:"form-control" %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <input type="submit" value="Next" class="btn btn-outline-success float-right">
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!-- /FIRST CONFIGURATION -->
+
+        <!-- SECOND CONFIGURATION -->
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseSecond" aria-expanded="false" aria-controls="collapseSecond">
+                        Second Config
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseSecond" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionParent">
+                <div class="card-body">
+
+                    <form method="post" action="">{% csrf_token %}
+                        {{ wizard.management_form }}
+                        <h3>Second</h3>
+                        {% for field in form.visible_fields %}
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">{{ field.label_tag }}</label>
+                                <div class="col-sm-10">
+                                    {% render_field field|add_class:"form-control" %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% if wizard.steps.prev %}
+                            <button name="wizard_goto_step" type="submit" class="btn btn-outline-secondary"
+                                    value="{{ wizard.steps.prev }}">Prev Step
+                            </button>
+                        {% endif %}
+                        <input type="submit" value="Next" class="btn btn-outline-success float-right">
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!-- /SECOND CONFIGURATION -->
+
+        <!-- THIRD CONFIGURATION -->
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseThird" aria-expanded="false" aria-controls="collapseThird">
+                        Third Config
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThird" class="collapse" aria-labelledby="headingThree" data-parent="#accordionParent">
+                <div class="card-body">
+
+                    <form method="post" action="">{% csrf_token %}
+                        {{ wizard.management_form }}
+                        <h3>Third</h3>
+                        {% for field in form.visible_fields %}
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">{{ field.label_tag }}</label>
+                                <div class="col-sm-10">
+                                    {% render_field field|add_class:"form-control" %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% if wizard.steps.prev %}
+                            <button name="wizard_goto_step" type="submit" class="btn btn-outline-secondary"
+                                    value="{{ wizard.steps.prev }}">Prev Step
+                            </button>
+                        {% endif %}
+                        <input type="submit" value="Finish" class="btn btn-outline-success float-right">
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!-- /THIRD CONFIGURATION -->
+
+    </div>
+{% endblock content %}
+
+{% block script %}
+    <script>
+
+    </script>
+{% endblock script %}

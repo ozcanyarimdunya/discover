@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <form method="post" action="">{% csrf_token %}
+        {{ wizard.management_form }}
+        <h3>Third</h3>
+        {% for field in form.visible_fields %}
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">{{ field.label_tag }}</label>
+                <div class="col-sm-10">
+                    {% render_field field|add_class:"form-control" %}
+                </div>
+            </div>
+        {% endfor %}
+        {% if wizard.steps.prev %}
+            <button name="wizard_goto_step" type="submit" class="btn btn-outline-secondary"
+                    value="{{ wizard.steps.prev }}">Prev Step
+            </button>
+        {% endif %}
+        <input type="submit" value="Finish({{ wizard.steps.step1 }}/{{ wizard.steps.count }})"
+               class="btn btn-outline-success float-right">
+    </form>
+{% endblock content %}

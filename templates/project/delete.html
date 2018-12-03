@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <h4>Detail Project</h4>
+    <hr>
+    <div class="row">
+        <form method="post">{% csrf_token %}
+            <p>Are you sure, you want to delete {{ project.name }}?</p>
+            <input type="submit" class="btn btn-danger" value="Delete">
+        </form>
+    </div>
+{% endblock content %}
+
+{% block script %}
+
+{% endblock script %}
