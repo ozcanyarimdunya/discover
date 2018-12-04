@@ -22,7 +22,7 @@ INSTALLED_APPS = [
     'formtools',
 
     'project.apps.ProjectConfig',
-    'process.apps.ProcessConfig',
+    'anytype.apps.AnytypeConfig',
 ]
 
 MIDDLEWARE = [

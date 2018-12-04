@@ -60,7 +60,6 @@ venv.bak/
 .ropeproject
 /site
 .mypy_cache/
-.gitignore
 .idea/
 .venv/
 TODOS
